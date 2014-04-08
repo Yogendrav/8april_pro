@@ -1,0 +1,46 @@
+= nested_form_for @comment do |f|
+  %div
+    = #f.label :add_comment
+    = f.text_area :add_comment, :rows => 3, :class => "comment_box"
+    = hidden_field_tag :project_id, params[:project_id]
+  %div
+    = f.fields_for :pictures do |p|
+      .attach_file
+        = p.file_field :attachment, :class => "comment-file",:onchange =>"validateFiles(this);",:data => {:max_file_size => 25.megabytes}
+        = image_tag "add_img.png", :class => "upload-preview-image"
+        = p.link_to_remove "Remove Attachment", :class => "btn btn-danger"
+  %div
+    %span
+      = #image_tag "attachment.png"
+      = f.link_to_add "Add Attachment", :pictures, :class => "btn btn-success"
+    = f.submit "save", :class => "btn btn-warning"
+
+:javascript
+
+$(document).ready(function(){
+  function validateFiles(inputFile) {
+    var maxExceededMessage = "This file exceeds the maximum allowed file size (25 MB)";
+    var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif .png, .doc, .docx, .pdf, .html, .htm or .odt is allowed";
+    var allowedExtension = ["jpg", "jpeg", "gif", "png", "doc", "docx", "pdf", "html", "htm", "odt"];
+   
+    var extName;
+    var maxFileSize = $(inputFile).data('max-file-size');
+    var sizeExceeded = false;
+    var extError = false;
+   
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+      extName = this.name.split('.').pop();
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    });
+    if (sizeExceeded) {
+      window.alert(maxExceededMessage);
+      $(inputFile).val('');
+    };
+   
+    if (extError) {
+      window.alert(extErrorMessage);
+      $(inputFile).val('');
+    };
+  }
+});

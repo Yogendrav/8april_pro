@@ -1,0 +1,28 @@
+// Place all the styles related to the pictures controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.attach_file img {
+	background-color: #D3D3D3;
+  border: 2px solid #808080;
+  border-radius: 12px 12px 12px 12px;
+  height: 80px;
+  width: 80px;
+  margin-left: 5px;
+}
+
+.change-img {
+	float: right;
+	margin-right: -50px;
+	margin-top: -70px;
+	display:none;
+}
+
+.delete_attachment {
+	display: inline;
+}
+.delete_attachment a img {
+	height: 20px;
+	float: right;
+}

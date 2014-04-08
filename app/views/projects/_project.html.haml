@@ -1,0 +1,27 @@
+.tab_bg  
+.tabs
+  %ul
+    %li
+      %a{href: projects_path(:with=>"all_project"), :id => "all_project"} All Projects
+    %li
+      %a{href: projects_path(:with=>"my_project"), :id => "my_project"} My Projects
+    %li
+      %a{href: projects_path(:with => "upcoming_project"), :id => "upcoming_project"} Upcoming Projects
+    %li
+      %a{href: projects_path(:with => "completed_project"), :id => "completed_project"} Completed Projects
+.clearfix
+
+-if params[:with] == "upcoming_project"
+  = render :partial => "upcoming_project"
+
+- elsif params[:with] == "completed_project"
+  = render :partial => "completed_project"
+
+- elsif params[:with] == "my_project"
+  = render :partial => "my_project"
+
+- elsif params[:with] == "project_tasks"
+  = render :partial => "project_tasks"
+
+- else
+  = render :partial => "all_project"

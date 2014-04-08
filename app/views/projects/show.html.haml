@@ -1,0 +1,41 @@
+%div
+  %b
+    Project Title
+  = @project.project_title
+
+%div
+  %b
+    Project Created By
+  = @project.project_created_by
+
+%div
+  %b
+    Project Created At
+  = @project.project_created_on
+
+%div
+  %b
+    Project Details
+  = @project.project_details
+
+%div
+  %b
+    Project Starts At
+  = @project.project_starts_on
+
+%div
+  %b
+    Project Ends At
+  = @project.project_ends_on
+
+%div
+  %b
+    Project Status
+  = @project.status
+
+%div
+  %b
+    Invite People
+  = @project.invite_people
+
+= link_to "All Projects", projects_path

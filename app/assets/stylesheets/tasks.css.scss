@@ -1,0 +1,33 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#projects_tasks {
+  background-color: #D3D3D3;
+  border: 1px solid #424A57;
+  color: #424A57;
+  margin: 10px 10px 30px 230px;
+  padding: 5px;
+  text-align: center;
+  width: 50%;
+}
+
+#div-load {
+  background-color: #777777;
+  height: 100%;
+  opacity: 0.7;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+#div-another-image {
+	background-image: url(ajax-loader.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 100%;
+	opacity: 0.6;
+	position: fixed;
+	width: 100%;
+  z-index: 1001;
+}

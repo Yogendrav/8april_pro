@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  task_created_by: MyString
+  all_project: MyString
+  task_created_on: 2014-03-31 16:59:04
+  task_details: MyText
+  starts_on: 2014-03-31 16:59:04
+  ends_on: 2014-03-31 16:59:04
+  project_id: 1
+
+two:
+  title: MyString
+  task_created_by: MyString
+  all_project: MyString
+  task_created_on: 2014-03-31 16:59:04
+  task_details: MyText
+  starts_on: 2014-03-31 16:59:04
+  ends_on: 2014-03-31 16:59:04
+  project_id: 1

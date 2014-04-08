@@ -1,0 +1,152 @@
+
+.bootstrap-switch {
+    -moz-user-select: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 8px;
+    min-width: 100px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+}
+.bootstrap-switch.bootstrap-switch-mini {
+    min-width: 72px;
+}
+.bootstrap-switch.bootstrap-switch-mini > div > span, .bootstrap-switch.bootstrap-switch-mini > div > label {
+    font-size: 10px;
+    line-height: 9px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-mini-icons {
+    height: 1.2em;
+    line-height: 9px;
+    margin-bottom: -1px;
+    margin-top: -1px;
+    text-align: center;
+    transform: scale(0.6);
+    vertical-align: text-top;
+}
+.bootstrap-switch.bootstrap-switch-small {
+    min-width: 80px;
+}
+.bootstrap-switch.bootstrap-switch-small > div > span, .bootstrap-switch.bootstrap-switch-small > div > label {
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.bootstrap-switch.bootstrap-switch-large {
+    min-width: 120px;
+}
+.bootstrap-switch.bootstrap-switch-large > div > span, .bootstrap-switch.bootstrap-switch-large > div > label {
+    font-size: 16px;
+    line-height: normal;
+    padding-bottom: 9px;
+    padding-top: 9px;
+}
+.bootstrap-switch.bootstrap-switch-animate > div {
+    transition: margin-left 0.5s ease 0s;
+}
+.bootstrap-switch.bootstrap-switch-on > div {
+    margin-left: 0;
+}
+.bootstrap-switch.bootstrap-switch-on > div > label {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.bootstrap-switch.bootstrap-switch-off > div {
+    margin-left: -50%;
+}
+.bootstrap-switch.bootstrap-switch-off > div > label {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.bootstrap-switch.bootstrap-switch-disabled, .bootstrap-switch.bootstrap-switch-readonly {
+    cursor: default !important;
+    opacity: 0.5;
+}
+.bootstrap-switch.bootstrap-switch-disabled > div > span, .bootstrap-switch.bootstrap-switch-readonly > div > span, .bootstrap-switch.bootstrap-switch-disabled > div > label, .bootstrap-switch.bootstrap-switch-readonly > div > label {
+    cursor: default !important;
+}
+.bootstrap-switch.bootstrap-switch-focused {
+    border-color: #66AFE9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+.bootstrap-switch > div {
+    border-radius: 4px 4px 4px 4px;
+    display: inline-block;
+    top: 0;
+    transform: translate3d(0px, 0px, 0px);
+    width: 150%;
+}
+.bootstrap-switch > div > span, .bootstrap-switch > div > label {
+    -moz-box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block !important;
+    font-size: 14px;
+    height: 100%;
+    line-height: 20px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+.bootstrap-switch > div > span {
+    text-align: center;
+    width: 33.3333%;
+    z-index: 1;
+}
+.bootstrap-switch > div > span.bootstrap-switch-handle-on {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #FF0000;
+}
+.bootstrap-switch > div > span.bootstrap-switch-handle-off {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #000000;
+}
+.bootstrap-switch > div > span.bootstrap-switch-primary {
+    background: none repeat scroll 0 0 #428BCA;
+    color: #FFFFFF;
+}
+.bootstrap-switch > div > span.bootstrap-switch-info {
+    background: none repeat scroll 0 0 #5BC0DE;
+    color: #FFFFFF;
+}
+.bootstrap-switch > div > span.bootstrap-switch-success {
+    background: none repeat scroll 0 0 #5CB85C;
+    color: #FFFFFF;
+}
+.bootstrap-switch > div > span.bootstrap-switch-warning {
+    background: none repeat scroll 0 0 #F0AD4E;
+    color: #FFFFFF;
+}
+.bootstrap-switch > div > span.bootstrap-switch-danger {
+    background: none repeat scroll 0 0 #D9534F;
+    color: #FFFFFF;
+}
+.bootstrap-switch > div > span.bootstrap-switch-default {
+    background: none repeat scroll 0 0 #EEEEEE;
+    color: #000000;
+}
+.bootstrap-switch > div > label {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #333333;
+    margin-bottom: -1px;
+    margin-top: -1px;
+    text-align: center;
+    width: 33.3333%;
+    z-index: 100;
+}
+.bootstrap-switch input[type="radio"], .bootstrap-switch input[type="checkbox"] {
+    left: 0;
+    position: absolute !important;
+    top: 0;
+    z-index: -1;
+}

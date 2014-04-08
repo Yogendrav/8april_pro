@@ -1,0 +1,97 @@
+.task_form
+  = form_for @task, :validate => true, :id => "myForm" do |f|
+    #div-load{:style => "display:none"}
+    #div-another-image{:style => "display:none"}
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h3#myModalLabel.modal-title.project_header_text Add Task
+        .modal-body
+          .control-group.task_title
+            = f.label(:title, :class => "control-label ")
+            .controls
+              = f.text_field :title, :placeholder => "Title"
+              %span#title_error
+          .control-group
+            = f.label(:created_by, :class => "control-label")
+            .controls.left-inner-addon 
+              = f.text_field :task_created_by, :value => "#{current_user.first_name}", :readonly => true
+          .control-group.task_project_id
+            = f.label(:all_project, :class => "control-label")
+            .controls.form-control
+              = f.select :project_id, options_for_select(Project.all.collect{|p| [p.project_title, p.id]}), :prompt => "please select project"
+              = #hidden_field_tag :project_id, :value => params[:project_id]
+              %span#all_project_error
+          .control-group.pro_details
+            = f.label(:task_details, :class => "control-label")
+            .controls
+              = f.text_area :task_details, :rows => 5, :id => "pro_details", :placeholder => "Task Description"
+              %span#task_details_error
+          .control-group.task_starts_on
+            = f.label(:starts_on, :class => "control-label")
+            .controls
+              = f.text_field :starts_on, format: :long, :placeholder => "DD/MM/YYYY"
+              %span#starts_on_error
+          .control-group.task_ends_on
+            = f.label(:ends_on, :class => "control-label")
+            .controls
+              = f.text_field :ends_on, format: :long, :placeholder => "DD/MM/YYYY"
+              %span#ends_on_error
+          .control-group
+            = f.label(:status, :class => "control-label")
+            .controls.bootstrap-switch.bootstrap-switch-id-animated-switch.bootstrap-switch-on.bootstrap-switch-animate
+              %div
+                %input#animated-switch{checked: "checked", "data-animated" => "true", type: "checkbox"}   
+                = f.hidden_field :task_status
+                %span#task_status_error
+                =# f.check_box :status, collection: %w[A B]
+                // %span.bootstrap-switch-handle-on.bootstrap-switch-primary ON
+                // %label{for: "animated-switch"} 
+                // %span.bootstrap-switch-handle-off.bootstrap-switch-default OFF
+        .modal-footer{:style => "text-align:center"}
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+          = f.submit "Add Task", :class => "btn btn-primary save_task", value: "Send"
+
+:javascript
+  $(document).ready(function(){
+    $(".save_task").on('click',function(){
+      $(".bootstrap-switch-on").length >1
+      if($(".bootstrap-switch-on").length >1){
+        $("#task_task_status").attr("value","Working")
+      }else{
+        $("#task_task_status").attr("value","Pending")
+      }
+    })
+    // $('form#myForm').trigger('submit.rails');
+    // Bootstrap switch button //
+    $('#animated-switch').bootstrapSwitch('animate', true);
+  });
+  $('form').submit(function() {  
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+      url: $(this).attr('action'),
+      data: valuesToSubmit,
+      dataType: "script"
+    })
+  });
+
+  $.fn.datepicker.dates['en'] = {
+    days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    today: "Today",
+    clear: "Clear"
+  };
+
+  $('#task_starts_on').datepicker({
+      language: 'en',
+      autoClose: true
+  });
+
+  $('#task_ends_on').datepicker({
+      language: 'en',
+      autoClose: true
+  });

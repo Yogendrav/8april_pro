@@ -1,0 +1,86 @@
+- @projects.each_with_index do |project,i|
+  - if project.status == "Completed"
+    .msgactive.msg{:id => "slideToggle_#{i}"}
+      .profile_pic
+        - if params[:with] =="my_project"
+          = image_tag current_user.avatar.tiny.url
+        -else
+          = image_tag User.find_by_id(project.user_id).avatar.tiny.url
+      .time_btn
+        %a{href: "#"}
+          = project.created_at.strftime("%H:%M")
+      .content_text
+        %h3
+          = project.project_title
+        %p
+          = truncate("#{project.project_details}", :length => 70)
+      .new_msgs
+        = link_to projects_path(:with => "project_tasks", :project_id => project.id) do
+          %h3
+            = project.tasks.all.size
+        %a Tasks
+        %p
+          = project.project_starts_on.strftime("%m/%d/%y")
+        %p
+          = project.project_ends_on.strftime("%m/%d/%y")
+      .drop_arrow
+        %a{href: "#"} arrow
+    .info_main_box
+      .info
+        = project.invite_people
+        %textarea{cols: "50", rows: "4"}
+          = project.project_details
+      .info
+        = project.status
+        .attch_box
+          .attach
+            - project.pictures.each do |picture|
+              - if picture.attachment.present?
+                %li{:style => "list-style:none;padding:5px;"}
+                  %i.fa.fa-download
+                  = link_to "#{picture.attachment.file.filename}", picture_download_file_path(picture)
+                  .delete_attachment
+                    = link_to image_tag("delete.jpeg"), picture, :method => :delete, :confirm => "Are you sure"
+          .attach
+            = link_to "Attach New File", new_picture_path(:project_id => project.id), :class => "file_attach1", :remote => true
+            %div.file_attach
+            =# hidden_field_tag :project_id, :value => "#{project.id}"
+      .info
+        =image_tag "chat.png"
+        .chat_box
+          = link_to "Add Comment", new_comment_path(:project_id => project.id), :class => "add_comment1 btn btn-primary", :remote => true
+          %div.add_comment
+          %a{href: "#"}
+            = image_tag "attachment.png"
+        .clearfix  
+        .line_bar
+        .comment_box
+          - project.comments.each do |comment|
+            %li{:style => "list-style:none"}
+              =# User.find_by_id(comment.user_id).first_name
+              = comment.add_comment
+            - comment.pictures.each do |picture|
+              %li{:style => "list-style:none;padding:5px;"}
+                -if picture.attachment.present?
+                  %i.fa.fa-download
+                  = link_to "#{picture.attachment.file.filename}", picture_download_file_path(picture)
+                  .delete_attachment
+                    = link_to image_tag("delete.jpeg"), picture, :method => :delete, :confirm => "Are you sure"
+        .clearfix
+
+:javascript 
+
+$(document).ready(function(){
+  $('.info_main_box').hide();
+  $(".msgactive").click(function(){
+    var getID = this.id.split("_");
+    $(this).prev('.info_main_box').hide();
+    $(this).next('.info_main_box').slideToggle(1000);
+  });
+  $(window).load(function(){
+    $("[data-toggle]").click(function() {
+      var toggle_el = $(this).data("toggle");
+      $(toggle_el).toggleClass("open-sidebar");
+    });
+  });
+})

@@ -1,0 +1,37 @@
+.content_area
+  .content_header
+    %a{href: "#"}
+      Show Project Details
+      = image_tag "arrow.png"
+    #project_pagination
+      = will_paginate(@projects, :renderer => WillPaginate::ActionView::LinkRenderer)
+    .search_project
+      = form_tag projects_path, :method => :get, :id => "projects_search", :remote => true do
+        %p
+          = text_field_tag :search, params[:search], :class => "search_text"
+          = submit_tag "GO", :name => nil, :class => "btn btn-primary project_search_button"
+  #project
+    = render :partial => "project"
+
+.content_right
+  = render :partial => "right_content"
+
+.footer
+
+:javascript
+
+$(document).ready(function () {
+  $('.pagination .previous_page').text('«');
+  $('.pagination .next_page').text('»');
+
+  $('.pagination').each(function () {
+    var $bar = $(this);
+    $bar.find('a, .current, span').wrapAll('<ul>');
+    $bar.find('a, .current, span').wrap('<li>');
+
+    $bar.find('em').each(function () {
+      $(this).parent().addClass('disabled');
+      $(this).replaceWith('<a href="#">' + $(this).text() + '</a>');
+    });
+  });
+});

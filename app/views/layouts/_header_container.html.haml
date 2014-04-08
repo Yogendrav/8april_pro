@@ -1,0 +1,60 @@
+.gridContainer.clearfix
+  .header
+    .logo
+      = link_to (image_tag "logo.png"), root_path
+    %a#sidebar-toggle{"data-toggle" => ".content_right", href: "#"}
+      %span.bar
+      %span.bar
+      %span.bar
+    - if user_signed_in?
+      .right_head
+        .user_logged
+          - if current_user.avatar.present?
+            = image_tag current_user.avatar.tiny.url
+          - else
+            = image_tag "user_photo.png"
+          %span
+            Logged in as
+          %a{href: "#"}
+            = current_user.first_name
+        = link_to "Logout", destroy_user_session_path, :method => :delete, :class => "user_logout_link"
+        .dropdown{:style => "float:right"}
+          %select{name: "Settings"}
+            %option Settings
+            %option Sample 1
+            %option Sample 1
+            %option Sample 1
+            %option Sample 1
+            %option Sample 1
+            %option Sample 1
+    - else
+      .right_head_login
+        = link_to 'Login', new_user_session_path
+        |
+        = link_to 'Register', new_user_registration_path
+  .second_header
+    .left_section
+      .dashboard
+        = link_to "Dashboard", dashboards_path
+      .projects
+        = #link_to "Projects", projects_path
+        %a{href: projects_path(:with=>"project_section"), :id => "project_link"} Projects
+      .tasks
+        %a{href: tasks_path(:with=>"task_section"), :id => "task_link"} Tasks
+      .time_log
+        %a{href: "#"} Time Log
+      -if user_signed_in?
+        -if params[:with] == "project_section" || params[:with] == "all_project" || params[:with] == "my_project" || params[:with] == "upcoming_project" || params[:with] == "completed_project"
+          .create_new{style: "padding-bottom: 24px;"}
+            %a{"data-target" => "#myModal", "data-toggle" => "modal"}
+              Create New
+          #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", style: "display: none;", tabindex: "-1"}
+            = render :partial => "layouts/project_modal_form"
+        - elsif params[:with] == "task_section" || params[:with] == "all_task" || params[:with] == "my_task" || params[:with] == "upcoming_task" || params[:with] == "completed_task"
+          .create_new{style: "padding-bottom: 24px;"}
+            %a{"data-target" => "#myTaskModal", "data-toggle" => "modal"}
+              Create New
+          #myTaskModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", style: "display: none;", tabindex: "-1"}
+            = render :partial => "tasks/form"
+        - else
+          

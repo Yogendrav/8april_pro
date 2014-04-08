@@ -1,0 +1,181 @@
+#registration-div
+  #registration-box
+    %h2
+      Sign up
+      %span.mandatory_notice
+        Fields marked (
+        %b.mandatory> *
+        ) are mandatory
+    #registration_form
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        %div.first_name
+          = #f.label :first_name
+          %label
+            First Name
+            %b.mandatory *
+          = f.text_field :first_name, :class => "modalElements login-label form-control", :id => "fname_i", :placeholder => "First Name"
+          %span#first_name_error
+        %div
+          = #f.label :middle_name
+          %label
+            Middle Name
+          = f.text_field :middle_name, :class => "modalElements login-label form-control", :id => "mname_i", :placeholder => "Middle Name"
+        %div.last_name
+          =# f.label :last_name
+          %label
+            Last Name
+            %b.mandatory *
+          = f.text_field :last_name, :class => "modalElements login-label form-control", :id => "lname_i", :placeholder => "Last Name"
+          %span#last_name_error
+        %div.user_name
+          %label
+            User Name
+            %b.mandatory *
+          %span#username_info.fade.hide username not available
+          = f.text_field :user_name, :class => "modalElements login-label form-control", :id => "uname_i", :placeholder => "User Name"
+          %span#user_name_error
+        %div.email
+          =# f.label :email
+          %label
+            Email
+            %b.mandatory *
+          = f.email_field :email, :autofocus => true, :class => "modalElements login-label form-control", :id => "emailid_i", :placeholder => "Email Id"
+          %span#email_error
+        %div.password
+          =# f.label :password
+          %label
+            Password
+            %b.mandatory *
+          = f.password_field :password, :class => "modalElements login-label form-control", :id => "password_i", :placeholder => "Password"
+          %span#password_error
+        %div.password_confirmation
+          =# f.label :password_confirmation
+          %label
+            Password Confirmation
+            %b.mandatory *
+          = f.password_field :password_confirmation, :class => "modalElements login-label form-control", :id => "password_confirmation_i", :placeholder => "Password Confirmation"
+          %span#password_confirmation_error
+        %div.avatar
+          = #f.label :avatar
+          %label
+            Avatar
+            %b.mandatory *
+          .fileupload.fileupload-new{"data-provides" => "fileupload"}
+            .fileupload-new.thumbnail{style: "width: 50px; height: 50px;"}
+              %img#imgsrc{src: ""}
+            #imgdiv.fileupload-preview.fileupload-exists.thumbnail{style: "width: 50px; height: 50px;"}
+            %span.btn.btn-file{style: "margin-left: 0%!important;"}
+              %span.fileupload-new{id: "btn select_btn", style: "margin-left: 0%!important;"} Select image
+              %span.fileupload-exists Change
+              = f.file_field :avatar, :id => "img", :accept => "image/jpg,image/jpeg,image/png,image/gif,image/bmp,image/tiff", :size => "1000"
+              %span#avatar_error
+            %a#clo.btn.fileupload-exists{"data-dismiss" => "fileupload", href: "#", style: "margin-left: 0%!important;"} Remove
+        %br
+        %div
+          = f.submit "Register", :id => "register_button"
+      = render "devise/shared/links"
+
+:javascript
+
+$(document).ready(function(){
+  $("#register_button").click(function(){
+    var first_name = $("#fname_i").val()
+    var last_name = $("#lname_i").val()
+    var user_name = $("#uname_i").val()
+    var email_id = $("#emailid_i").val()
+    var password = $("#password_i").val()
+    var password_confirmation = $("#password_confirmation_i").val()
+    var avatar = $("#img").val()
+    if(first_name == ""){
+      $("#lname_i").html("");
+      $("#uname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#password_i").html("");
+      $("#img").html("");
+      $("#first_name_error").html("Please Insert First Name");
+      $('html, body').animate({
+        scrollTop: $(".first_name").offset().top
+      },500);
+      return false;
+    }else
+    if(last_name == ""){
+      $("#fname_i").html("");
+      $("#uname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#img").html("");
+      $("#last_name_error").html("Please Insert Last Name");
+      $('html', 'body').animate({
+        scrollTop: $(".last_name").offset().top
+      },500);
+      return false;
+    }else
+    if(user_name == "") {
+      $("#fname_i").html("");
+      $("#lname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#img").html("");
+      $("#user_name_error").html("Please Insert User Name");
+      $('html', 'body').animate({
+        scrollTop: $(".user_name").offset().top
+      },500);
+      return false
+    }else
+    if(email == "") {
+      $("#fname_i").html("");
+      $("#lname_i").html("");
+      $("#uname_i").html("");
+      $("#password_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#img").html("");
+      $("#email_error").html("Please Insert Email");
+      $('html', 'body').animate({
+        scrollTop: $(".email").offset().top
+      },500);
+      return false
+    }else
+    if(password == "") {
+      $("#fname_i").html("");
+      $("#lname_i").html("");
+      $("#uname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#img").html("");
+      $("#password_error").html("Please Insert Minimum 8 Letter");
+      $('html', 'body').animate({
+        scrollTop: $(".password").offset().top
+      },500);
+      return false
+    }else
+    if(password_confirmation == "") {
+      $("#fname_i").html("");
+      $("#lname_i").html("");
+      $("#uname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_i").html("");
+      $("#img").html("");
+      $("#password_confirmation_error").html("Password Not Matched");
+      $('html', 'body').animate({
+        scrollTop: $(".password_confirmation").offset().top
+      },500);
+      return false
+    }
+    else {
+      $("#fname_i").html("");
+      $("#lname_i").html("");
+      $("#uname_i").html("");
+      $("#emailid_i").html("");
+      $("#password_i").html("");
+      $("#password_confirmation_i").html("");
+      $("#avatar_error").html("Please Select user Avatar");
+      $('html', 'body').animate({
+        scrollTop: $(".avatar").offset().top
+      },500);
+    }
+  })
+})

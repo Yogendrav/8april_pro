@@ -1,0 +1,61 @@
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
+  = form_for @project do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title Project Form
+        .modal-body
+          .control-group
+            = f.label(:project_title, :class => "control-label")
+            .controls
+              = f.text_field :project_title
+          .control-group
+            = f.label(:created_by, :class => "control-label")
+            .controls
+              = f.text_field :created_by
+          .control-group
+            = f.label(:created_at, :class => "control-label")
+            .controls
+              = f.text_field :created_at, :id => "project_created_date"
+          .control-group
+            = f.label(:project_details, :class => "control-label")
+            .controls
+              = f.text_field :project_details
+          .control-group
+            = f.label(:starts_at, :class => "control-label")
+            .controls
+              = f.text_field :starts_at, :id => "project_start"
+          .control-group
+            = f.label(:ends_at, :class => "control-label")
+            .controls
+              = f.text_field :ends_at, :id => "project_end"
+          .control-group
+            = f.label(:status, :class => "control-label")
+            .controls
+              = f.select :status, Project::STATUS.collect{|v, k| [v, k]}, :prompt => "please select option"
+          .control-group
+            = f.label(:invite_people, :class => "control-label")
+            .controls
+              = f.select :invite_people, User.all.collect{|a| a.first_name}, :prompt => "please select option"
+          .control-group
+            = f.submit "Save", :class => "btn btn-primary"
+
+:javascript
+  $(document).ready(function(){
+    $('#project_created_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#project_starts_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#project_ends_at').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+  })

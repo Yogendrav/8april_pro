@@ -1,0 +1,108 @@
+- if @project.tasks.present?
+  - @project.tasks.each_with_index do |task,i|
+    .msg_active.msg{:id => "slideToggle_#{i}"}
+      .profile_pic
+        - if params[:with] =="task_section" || params[:with] =="all_task"
+          = image_tag User.find_by_id(task.user_id).avatar.tiny.url
+        -else
+          = image_tag current_user.avatar.tiny.url
+      .time_btn
+        %a{href: "#"}
+          = task.created_at.strftime("%H:%M")
+      .content_text
+        %h3
+          = task.title
+        %p
+          = truncate("#{task.task_details}", :length => 70)
+      .new_msgs
+        = #link_to (project.tasks.all.size), tasks_path
+        %p
+          = #task.starts_on
+        %p
+          = #task.ends_on
+      .drop_arrow
+        %a{href: "#"} arrow
+    .info_main_box
+      .info
+        =# project.invite_people
+        = image_tag "info.png"
+        %textarea{cols: "50", rows: "4"}
+          = task.task_details
+      .info
+        = #task.status
+        .attch_box
+          .attach
+            - task.photos.each do |photo|
+              %li{:style => "list-style:none;padding:5px;"}
+                -if photo.document.present?
+                  %i.fa.fa-download
+                  = link_to "#{photo.document.file.filename}", photo_download_task_file_path(photo)
+                  .delete_attachment
+                    = link_to image_tag("delete.jpeg"), photo, :method => :delete, :confirm => "Are you sure"
+          .attach
+            = link_to "Attach New File", new_photo_path(:task_id => task.id), :class => "file_attach2", :remote => true
+            %div.task_file_attach
+      .info
+        = image_tag "chat.png"
+        .chat_box
+          = link_to "Add Comment", new_task_comment_path(:task_id => task.id), :class => "add_comment1 btn btn-primary", :remote => true
+          %div.add_task_comment
+        .clearfix  
+        .line_bar
+        .comment_box
+          .user
+            - task.task_comments.each do |comment|
+              #comments_box
+                .commented_user
+                  = #image_tag current_user.avatar.tiny.url
+                  %a
+                    = comment.task_comment_created_by
+                  %span
+                    = "#{time_ago_in_words(comment.created_at)} ago"
+                %li{:style => "list-style:none"}
+                  - comment.photos.each do |photo|
+                    %li{:style => "list-style:none; padding:5px;"}
+                      %i.fa.fa-download
+                      = link_to "#{photo.document.file.filename}", photo_download_task_file_path(photo)
+                      .delete_attachment
+                        = link_to image_tag("delete.jpeg"), photo, :method => :delete, :confirm => "Are you sure"
+                  %p
+                    = comment.add_task_comment
+              .comment_border
+        .clearfix
+- else
+  #projects_tasks
+    There is no Task related to this project.
+
+:javascript
+  $(document).ready(function(){
+    $('.info_main_box').hide();
+    $(".msg_active").click(function(){
+      var getID = this.id.split("_");
+      $(this).prev('.info_main_box').hide();
+      $(this).next('.info_main_box').slideToggle(1000);
+    });
+    $(window).load(function(){
+      $("[data-toggle]").click(function() {
+        var toggle_el = $(this).data("toggle");
+        $(toggle_el).toggleClass("open-sidebar");
+      });
+    });
+    // Adding actibe class on click task links //
+    $("#all_task").click(function(){
+      $(this).addClass("active")
+    })
+    $("#my_task").click(function(){
+      $(this).addClass("active")
+    })
+    $("#upcoming_task").click(function(){
+      $(this).addClass("active")
+    })
+    $("#completed_task").click(function(){
+      $(this).addClass("active")
+    })
+
+    $(".file_attach").on('click',function(){
+      $(".file_attach").val($("#project_id").html());
+    })
+  })

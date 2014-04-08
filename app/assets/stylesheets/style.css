@@ -1,0 +1,452 @@
+.header {
+  background-color: #424A57;
+  border-bottom: 2px solid #1F1F1F;
+  float: left;
+  width: 100%;
+}
+
+.logo {
+  float: left;
+  margin: 22px 30px 10px;
+  width: 11%;
+}
+
+.right_head, .right_head_login {
+  float: right;
+  padding: 1%;
+  width: 32%;
+}
+.right_head_login a { color: #58A6EF !important; }
+
+.login {
+  float: left;
+  margin-top: 3px;
+  width: 60%;
+}
+
+.user_logged {
+  border-right: 1px solid #FFFFFF;
+  float: left;
+  padding: 0 3%;
+}
+
+.user_logged img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+}
+
+.user_logged span {
+  color: #FFFFFF;
+  font-family: 'RobotoThin',verdana;
+  margin-left: 2px;
+}
+.user_logged a {
+  color: #58A6EF !important;
+  float: none !important;
+  margin: 0 !important;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.user_logout_link {
+  color: #FFFFFF !important;
+  font-family: 'RobotoRegular',verdana !important;
+  margin: 6px 3% 0;
+}
+
+.login a {
+  color: #FFFFFF;
+  float: left;
+  font-family: 'RobotoRegular',verdana !important;
+  margin: 6px 3% 0;
+}
+
+.inner_login a {
+  color: #58A6EF !important;
+  float: none !important;
+  margin: 0 !important;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dropdown select:focus {
+  background: url(drop_down_hover.png) no-repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);
+  box-shadow: 0 0 5px #FEFFEF;
+  outline: medium none;
+  outline-offset: 0;
+}
+
+.dropdown select {
+  -moz-appearance: none;
+  background: url(drop_down.png) no-repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);
+  border: 0 none !important;
+  color: #EFEFEF;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 15px;
+  height: 35px;
+  padding: 6px 25px;
+  text-indent: 0.01px;
+  text-overflow: "";
+  width: 145px;
+}
+
+/* Second Header*/
+
+
+.second_header {
+  background: none repeat scroll 0 0 #E6E6E6;
+  border-bottom: 2px solid #D2D2D2;
+  float: left;
+  width: 100%;
+}
+
+.left_section {
+  margin: 0 auto;
+  padding: 12px 0 45px;
+  width: 96%;
+}
+
+.dashboard a {
+  background: url(dashboard_btn.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #FFFFFF !important;
+  float: left;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin-right: 2%;
+  padding: 9px 8px 9px 30px;
+  text-indent: 1px;
+  text-transform: uppercase;
+}
+
+.projects a {
+  background: url(projects_btn.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #424A57 !important;
+  float: left;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin-right: 2%;
+  padding: 9px 13px 9px 37px;
+  text-shadow: 1px 1px 1px #898989;
+  text-transform: uppercase;
+}
+
+.tasks a {
+  background: url(tasks_btn.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #FFFFFF !important;
+  float: left;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin-right: 2%;
+  padding: 9px 37px 9px 40px;
+  text-shadow: 1px 1px 1px #0846AE;
+  text-transform: uppercase;
+}
+
+.time_log a {
+  background: url(time_log_btn.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #424A57 !important;
+  float: left;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  padding: 9px 21px 9px 38px;
+  text-shadow: 1px 1px 1px #898989;
+  text-transform: uppercase;
+}
+
+.create_new a {
+  background: url(create_new_btn.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #424A57 !important;
+  float: right;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin-right: 1%;
+  padding: 9px 9px 10px 30px;
+  text-indent: 1px;
+  text-shadow: 1px 1px 1px #898989;
+  text-transform: uppercase;
+}
+
+@charset "utf-8";
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+    display: block;
+}
+audio, canvas, video {
+    display: inline-block;
+}
+audio:not([controls]) {
+    display: none;
+}
+[hidden] {
+    display: none;
+}
+html {
+    font-size: 100%;
+    overflow-y: scroll;
+}
+body {
+    font-size: 14px;
+    line-height: 1.231;
+    margin: 0;
+}
+body, button, input, select, textarea {
+    color: #222222;
+    font-family: Arial,Helvetica,sans-serif;
+}
+a {
+    color: #0000EE;
+    text-decoration: none;
+}
+a:visited {
+    color: #551A8B;
+    text-decoration: none;
+}
+a:hover {
+    color: #0066EE;
+    text-decoration: none;
+}
+a:focus {
+    outline: medium none;
+    text-decoration: none;
+}
+a:hover, a:active {
+    outline: 0 none;
+}
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+b, strong {
+    font-weight: bold;
+}
+blockquote {
+    margin: 1em 40px;
+}
+dfn {
+    font-style: italic;
+}
+hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC -moz-use-text-color -moz-use-text-color;
+    border-image: none;
+    border-right: 0 none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+}
+ins {
+    background: none repeat scroll 0 0 #FFFF99;
+    color: #000000;
+    text-decoration: none;
+}
+mark {
+    background: none repeat scroll 0 0 #FFFF00;
+    color: #000000;
+    font-style: italic;
+    font-weight: bold;
+}
+pre, code, kbd, samp {
+    font-family: monospace,monospace;
+    font-size: 1em;
+}
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+q {
+    quotes: none;
+}
+q:before, q:after {
+    content: none;
+}
+small {
+    font-size: 85%;
+}
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+    top: -0.5em;
+}
+sub {
+    bottom: -0.25em;
+}
+ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 40px;
+}
+dd {
+    margin: 0 0 0 40px;
+}
+nav ul, nav ol {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+figure {
+    margin: 0;
+}
+form {
+    margin: 0;
+}
+fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+label {
+    cursor: pointer;
+}
+legend {
+    border: 0 none;
+    padding: 0;
+}
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+}
+
+select {
+  width: 35%;
+}
+
+button, input {
+    line-height: normal;
+}
+table button, table input {
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+input[type="checkbox"], input[type="radio"] {
+}
+input[type="search"] {
+    -moz-box-sizing: content-box;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0 none;
+    padding: 0;
+}
+textarea {
+    overflow: auto;
+    resize: vertical;
+    vertical-align: top;
+}
+input:valid, textarea:valid {
+}
+input:invalid, textarea:invalid {
+    background-color: #F0DDDD;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td {
+    vertical-align: top;
+}
+.ir {
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    border: 0 none;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+.ir br {
+    display: none;
+}
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+.visuallyhidden {
+    border: 0 none;
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+.invisible {
+    visibility: hidden;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+}
+@media print {
+* {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    color: #000000 !important;
+    filter: none !important;
+    text-shadow: none !important;
+}
+a, a:visited {
+    text-decoration: underline;
+}
+a[href]:after {
+    content: " (" attr(href) ")";
+}
+abbr[title]:after {
+    content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: "";
+}
+pre, blockquote {
+    border: 1px solid #999999;
+    page-break-inside: avoid;
+}
+thead {
+    display: table-header-group;
+}
+tr, img {
+    page-break-inside: avoid;
+}
+img {
+    max-width: 100% !important;
+}
+@page {
+    margin: 0.5cm;
+}
+p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+}
+h2, h3 {
+    page-break-after: avoid;
+}
+}

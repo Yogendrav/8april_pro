@@ -1,0 +1,133 @@
+.project_form
+  = form_for @project do |f|
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h3#myModalLabel.modal-title.project_header_text Add Project
+        .modal-body
+          .control-group.project_title
+            = f.label(:project_title, :class => "control-label ")
+            .controls
+              = f.text_field :project_title, :placeholder => "Title"
+              %span#project_title_error
+          .control-group
+            = f.label(:created_by, :class => "control-label")
+            .controls.left-inner-addon 
+              = f.text_field :project_created_by, :value => "#{current_user.first_name}", :readonly => true
+          .control-group.project_details
+            = f.label(:project_details, :class => "control-label")
+            .controls
+              = f.text_area :project_details, :rows => 5, :id => "pro_details", :placeholder => "Project Description"
+              %span#project_details_error
+          .control-group.project_start_on
+            = f.label(:starts_at, :class => "control-label")
+            .controls
+              = f.text_field :project_starts_on, format: :long, :placeholder => "DD/MM/YYYY"
+              %span#project_starts_on_error
+              / #alert.alert.alert-error{style: "display: block;"}
+          .control-group.project_end_on
+            = f.label(:ends_at, :class => "control-label")
+            .controls
+              = f.text_field :project_ends_on, format: :long, :placeholder => "DD/MM/YYYY"
+              %span#project_ends_on_error
+              / #alert.alert.alert-error{style: "display: block;"}
+              
+          .control-group
+            = f.label(:status, :class => "control-label")
+            .controls.bootstrap-switch.bootstrap-switch-id-animated-switch.bootstrap-switch-on.bootstrap-switch-animate
+              %div
+                %input#animated-switch{checked: "checked", "data-animated" => "true", type: "checkbox"}   
+                = f.hidden_field :status
+                =# f.check_box :status, collection: %w[A B]
+                // %span.bootstrap-switch-handle-on.bootstrap-switch-primary ON
+                // %label{for: "animated-switch"} 
+                // %span.bootstrap-switch-handle-off.bootstrap-switch-default OFF
+          .control-group
+            = f.label(:invite_people, :class => "control-label")
+            .controls
+              = f.select :invite_people, @users.reject {|user| user == current_user}.map(&:first_name), type: "checkbox"
+        .modal-footer{:style => "text-align:center"}
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+          = f.submit "Create Project", :class => "btn btn-primary save_project"
+
+:javascript
+  $(document).ready(function(){
+    $(".save_project").on('click',function(){
+      if($(".bootstrap-switch-on").length >1){
+        $("#project_status").attr("value","Pending")
+      }else{
+        $("#project_status").attr("value","Completed")
+      }
+      var project_title = $("#project_project_title").val()
+      var pro_details = $("#pro_details").val()
+      var project_starts_on = $("#project_project_starts_on").val()
+      var project_ends_on = $("#project_project_ends_on").val()
+      if(project_title == ""){
+        $("#pro_details").html("");
+        $("#project_starts_on").html("");
+        $("#project_ends_on").html("");
+        $("#project_title_error").html("Please Enter Project Title");
+        $('html, body').animate({
+          scrollTop: $(".project_title").offset().top
+        },500);
+        return false;
+      }else
+      if(pro_details == ""){
+        $("#project_project_title").html("");
+        $("#project_starts_on").html("");
+        $("#project_ends_on").html("");
+        $("#project_details_error").html("Please Enter Project Description");
+        $('html', 'body').animate({
+          scrollTop: $(".project_details").offset().top
+        },500);
+        return false;
+      }else
+      if(project_starts_on == "") {
+        $("#project_project_title").html("");
+        $("#pro_details").html("");
+        $("#project_ends_on").html("");
+        $("#project_starts_on_error").html("Please Select Start Date");
+        $('html', 'body').animate({
+          scrollTop: $(".project_start_on").offset().top
+        },500);
+        return false
+      }
+      else {
+        $("#project_project_title").html("");
+        $("#pro_details").html("");
+        $("#project_start_on").html("");
+        $("#project_ends_on_error").html("Please Select End Date");
+        $('html', 'body').animate({
+          scrollTop: $(".project_end_on").offset.top
+        },500);
+      }
+    })
+
+    var startDate = new Date(2012,1,20);
+    var endDate = new Date(2012,1,25);
+    $('#project_project_starts_on').datepicker({format: 'dd/mm/yyyy'})
+      .on('changeDate', function(ev){
+        if (ev.date.valueOf() > endDate.valueOf()){
+          $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+        } else {
+          $('#alert').hide();
+          startDate = new Date(ev.date);
+          $('#startDate').text($('#project_project_starts_on').data('date'));
+        }
+        $('#project_project_starts_on').datepicker('hide').val();
+      });
+    $('#project_project_ends_on').datepicker({format: 'dd/mm/yyyy'})
+      .on('changeDate', function(ev){
+        if (ev.date.valueOf() < startDate.valueOf()){
+          $('#alert').show().find('strong').text('The end date can not be less then the start date');
+        } else {
+          $('#alert').hide();
+          endDate = new Date(ev.date);
+          $('#endDate').text($('#project_project_ends_on').data('date'));
+        }
+        $('#project_project_ends_on').datepicker('hide').val();
+      });
+    // Bootstrap switch button //
+    $('#animated-switch').bootstrapSwitch('animate', true);
+  });

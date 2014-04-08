@@ -1,0 +1,21 @@
+#login-div
+  #errorbox
+    %span#loginerror_message.fade.in
+    %br/
+    %span#pworderror_message.fade.hide Error:
+  #login-box
+    %h2 Login
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name, :id => "login_form")) do |f|
+      .input-group
+        Email :
+        = f.email_field :email, :autofocus => true, :class => "login-label form-control email_login", :id => "username_i email_login"
+      .input-group
+        Password :
+        = f.password_field :password, :class => "login-label form-control", :id => "password_i password_login"
+      - if devise_mapping.rememberable?
+        %label.checkbox
+          = f.check_box :remember_me
+          = f.label :remember_me
+      %div
+        = f.submit "Login", :id => "login_button", :class => "login_b"
+    = #render "devise/shared/links"
